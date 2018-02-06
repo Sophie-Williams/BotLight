@@ -271,9 +271,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b052b17b242b74479657cd36424a171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingAnimals: 5
+  startingAnimals: 8
   animalPrefabs:
   - {fileID: 1118638645563806, guid: aac17f1f2c171994e8eda13346cce6bc, type: 2}
+  - {fileID: 1462646895814716, guid: e33caefff23693145833afd24c29dfd2, type: 2}
   cameraControl: {fileID: 788076661}
   spheres: []
   wayPointsForAI:

@@ -27,7 +27,7 @@ namespace BotLight
             {
 
                 SphereManager sphere = new SphereManager();
-                sphere.instance = Instantiate(animalPrefabs[Random.Range(0, animalPrefabs.Length)], new Vector3(i * 40, 50, i * 40), new Quaternion(0, 0, 0, 0)) as GameObject;
+                sphere.instance = Instantiate(animalPrefabs[Random.Range(0, animalPrefabs.Length)], new Vector3(i * 80, 50, i * 80), new Quaternion(0, 0, 0, 0)) as GameObject;
                 sphere.sphereNumber = i + 1;
                 sphere.SetupAI(wayPointsForAI);
                 spheres.Add(sphere);

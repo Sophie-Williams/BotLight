@@ -45,6 +45,8 @@ namespace BotLight
         {
             // When the tank is enabled, reset the tank's health and whether or not it's dead.
             currentHealth = startingHealth;
+            // Debug.Log("c Health" + currentHealth);
+            // Debug.Log("s Health" + startingHealth);
             dead = false;
 
             // Update the health slider's value and color.

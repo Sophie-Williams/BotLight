@@ -14,12 +14,24 @@ namespace BotLight
         [HideInInspector] public GameObject instance;         // A reference to the instance of the sphere when it is created.
         [HideInInspector] public List<Transform> wayPointList; // Temporary waypoints patrolling
         private StateController stateController;              // Reference to the StateController for AI
-
+        private BotAttack botAttack;
+        private BotHealth botHealth;
+        private BotMovement botMovement;
 
         public void SetupAI(List<Transform> wayPointList)
         {
+
+            // Debug.Log("Sphere number : " + sphereNumber);
+            botAttack = instance.GetComponent<BotAttack>();
+            botAttack.botNumber = sphereNumber;
+
+            botMovement = instance.GetComponent<BotMovement>();
+            botMovement.botNumber = sphereNumber;
+
             stateController = instance.GetComponent<StateController>();
-            stateController.SetupAI(true, wayPointList);
+            botMovement.SetupAI(stateController.SetupAI(true, wayPointList));
+
+
 
             // Get all of the renderers of the sphere. (prob useless for a sphere)
             MeshRenderer renderer = instance.GetComponent<MeshRenderer>();

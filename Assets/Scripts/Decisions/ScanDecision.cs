@@ -13,9 +13,9 @@ namespace BotLight
             return noEnemyInSight;
         }
 
-        private bool Scan(StateController controller)
+        private bool Scan(StateController controller) // TODO : try this decision
         {
-            controller.navMeshAgent.isStopped = true;
+            controller.botMovement.navMeshAgent.isStopped = true;
             controller.transform.Rotate(0, controller.sphereParameters.searchingTurnSpeed * Time.deltaTime, 0);
             return controller.CheckIfCountDownElapsed(controller.sphereParameters.searchDuration);
         }

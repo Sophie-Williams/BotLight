@@ -15,7 +15,10 @@ namespace BotLight
         public State remainState;
 
 
-        [HideInInspector] public NavMeshAgent navMeshAgent;
+        
+        [HideInInspector] public BotAttack botAttack;
+        [HideInInspector] public BotHealth botHealth;
+        [HideInInspector] public BotMovement botMovement;
         [HideInInspector] public List<Transform> wayPointList;
         [HideInInspector] public int nextWayPoint;
         [HideInInspector] public Transform food;
@@ -27,25 +30,19 @@ namespace BotLight
 
         void Awake()
         {
-            navMeshAgent = GetComponent<NavMeshAgent>();
-            navMeshAgent.stoppingDistance = 100; // ????
-            navMeshAgent.speed = 40;
+            botAttack = GetComponent<BotAttack>(); // TODO : Pass sphereParameters to components
+            botHealth = GetComponent<BotHealth>();
+            botMovement = GetComponent<BotMovement>();
+
             // If "Failed to create agent because it is not close enough to the NavMesh" appears
             // that's because the object linked with nma is too far from the floor for example
         }
 
-        public void SetupAI(bool aiActivationFromGameManager, List<Transform> wayPointsFromGameManager)
+        public bool SetupAI(bool aiActivationFromGameManager, List<Transform> wayPointsFromGameManager)
         {
             wayPointList = wayPointsFromGameManager;
             aiActive = aiActivationFromGameManager;
-            if (aiActive)
-            {
-                navMeshAgent.enabled = true;
-            }
-            else
-            {
-                navMeshAgent.enabled = false;
-            }
+            return aiActive;
         }
 
         void Update()

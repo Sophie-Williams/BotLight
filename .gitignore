@@ -36,3 +36,4 @@ sysinfo.txt
 # Large folders
 BotLight_Data
 Diagrams
+*.meta

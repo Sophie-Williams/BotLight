@@ -17,9 +17,9 @@ namespace BotLight
 
         private void Eat(StateController controller)
         {
-            controller.navMeshAgent.destination = controller.food.position;
+            controller.botMovement.navMeshAgent.destination = controller.food.position;
             // Animation
-            controller.navMeshAgent.isStopped = false; // ~= Resume() (deprecated)
+            controller.botMovement.navMeshAgent.isStopped = false; // ~= Resume() (deprecated)
         }
     }
 }

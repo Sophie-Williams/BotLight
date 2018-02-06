@@ -32,17 +32,13 @@ namespace BotLight
                 // only detect collider with Eatable layer => huge optimisation
                 if (Physics.SphereCast(controller.eyes.position, controller.sphereParameters.lookSphereCastRadius, controller.eyes.forward, out hit, controller.sphereParameters.lookRange, LayerMask.GetMask("Eatable")))
                 {
-                    Debug.Log("LookDecision - herbivorous - saw eatable");
+                    Debug.Log("LookDecision - carnivorous - saw eatable");
                     controller.chaseTarget = hit.transform;
                     controller.food = controller.chaseTarget;
                     // maybe AI saw something ... (food ...) ?
                     // or aggressive AI, attack when see smthing
+                    return true;
                 }
-                else
-                {
-
-                }
-                return true;
             }
 
             else if (controller.sphereParameters.diet == Diet.HERBIVOROUS)
