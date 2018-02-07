@@ -72,6 +72,7 @@ namespace BotLight
 
         public bool CheckIfCountDownElapsed(float duration)
         {
+            //Debug.Log("Countdown : " + stateTimeElapsed);
             stateTimeElapsed += Time.deltaTime;
             return (stateTimeElapsed >= duration);
         }

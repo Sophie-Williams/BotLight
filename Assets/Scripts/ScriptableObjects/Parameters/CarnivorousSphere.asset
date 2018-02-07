@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Name: CarnivorousSphere
   m_EditorClassIdentifier: 
   moveSpeed: 20
-  lookRange: 40
+  lookRange: 80
   lookSphereCastRadius: 10
   diet: 1
   attackRange: 1
-  attackRate: 1
+  attackRate: 0.1
   attackForce: 15
   attackDamage: 50
   searchDuration: 4

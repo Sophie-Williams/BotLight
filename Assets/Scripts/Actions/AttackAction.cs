@@ -17,13 +17,19 @@ namespace BotLight
             RaycastHit hit;
 
             Debug.DrawRay(controller.eyes.position, controller.eyes.forward.normalized * controller.sphereParameters.attackRange, Color.red);
-
-            if (Physics.SphereCast(controller.eyes.position, controller.sphereParameters.lookSphereCastRadius, controller.eyes.forward, out hit, controller.sphereParameters.attackRange))
+            // You can't attack plant for example,
+            if (Physics.SphereCast(controller.eyes.position, controller.sphereParameters.lookSphereCastRadius, controller.eyes.forward, out hit, controller.sphereParameters.attackRange, LayerMask.GetMask("Eatable")) && hit.rigidbody.tag != "StaticEatable")
             {
                 if (controller.CheckIfCountDownElapsed(controller.sphereParameters.attackRate))
                 {
                     //controller.tankShooting.Fire(controller.sphereParameters.attackForce, controller.sphereParameters.attackRate);
                     // TODO : attack things
+                    StateController target = hit.rigidbody.GetComponent<StateController>();
+                    //Debug.Log("Target : " + target.botMovement.botNumber);
+                    controller.botAttack.Attack(controller.sphereParameters.attackRate, target);
+                    Debug.Log("AttackAction - attacking");
+                    
+                    
                 }
             }
         }
