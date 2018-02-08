@@ -16,7 +16,7 @@ namespace BotLight
     {
         public override bool Decide(StateController controller)
         {
-            bool foodIsActive = controller.food.gameObject.activeSelf;
+            bool foodIsActive = controller.food;
             return foodIsActive;
         }
 

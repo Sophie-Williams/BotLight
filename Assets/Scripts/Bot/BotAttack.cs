@@ -89,16 +89,18 @@ namespace BotLight
         //public void Fire(float launchForce, float fireRate)
         public void Attack(float attackRate, StateController target) // attackSpeed ?
         {
+
+            Debug.Log("BotAttack/Attack");
             // Find the BotHealth script associated with the rigidbody.
             if (target)
             {
+
                 BotHealth targetHealth = target.GetComponent<BotHealth>();
                 if (Time.time > nextAttackTime && targetHealth.isActiveAndEnabled)
                 {
                     nextAttackTime = Time.time + attackRate;
                     // Set the fired flag so only Fire is only called once.
                     attacked = true;
-
 
 
 

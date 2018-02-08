@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace BotLight
 {
-    [CreateAssetMenu(menuName = "BotLight/Decisions/LookForAnimal")]
-    public class LookForAnimalDecision : Decision
+    [CreateAssetMenu(menuName = "BotLight/Decisions/LookNonStaticDecision")]
+    public class LookNonStaticDecision : Decision
     {
 
         public override bool Decide(StateController controller)
@@ -28,11 +28,11 @@ namespace BotLight
 
             // SphereCast is used to detect moving object, so prob only for carnivorous animals
             // only detect collider with Eatable layer => huge optimisation
-            if (Physics.SphereCast(controller.eyes.position, controller.sphereParameters.lookSphereCastRadius, controller.eyes.forward, out hit, controller.sphereParameters.lookRange, LayerMask.GetMask("Eatable")) && hit.rigidbody.tag != "HerbivorousEatble")
+            if (Physics.SphereCast(controller.eyes.position, controller.sphereParameters.lookSphereCastRadius, controller.eyes.forward, out hit, controller.sphereParameters.lookRange, LayerMask.GetMask("Eatable")) && hit.rigidbody.tag != "StaticEatable")
             {
-                Debug.Log("LookForAnimalDecision - saw eatable");
+                //Debug.Log("LookForAnimalDecision - saw eatable");
                 controller.chaseTarget = hit.transform;
-                controller.food = controller.chaseTarget;
+                //controller.food = controller.chaseTarget;
                 // maybe AI saw something ... (food ...) ?
                 // or aggressive AI, attack when see smthing
                 return true;

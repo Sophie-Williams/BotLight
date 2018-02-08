@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace BotLight
 {
-    [CreateAssetMenu(menuName = "BotLight/Decisions/LookForNonAnimal")]
-    public class LookForNonAnimalDecision : Decision
+    [CreateAssetMenu(menuName = "BotLight/Decisions/LookStaticDecision")]
+    public class LookStaticDecision : Decision
     {
 
         public override bool Decide(StateController controller)
@@ -31,7 +31,7 @@ namespace BotLight
             {
                 if (hitColliders[i].tag == "StaticEatable") // like plant
                 {
-                    Debug.Log("LookForNonAnimalDecision - saw eatable");
+                    //Debug.Log("LookForNonAnimalDecision - saw eatable");
                     controller.food = hitColliders[i].transform; // we saw food at hit.transform position => assign to food position
 
                     return true; // we found an eatable. exit early

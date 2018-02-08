@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace BotLight
@@ -8,6 +9,7 @@ namespace BotLight
         public int botNumber = 1;              // Used to identify which tank belongs to which player.  This is set by this tank's manager.
         public float speed = 12f;                 // How fast the tank moves forward and back.
         public float turnSpeed = 180f;            // How fast the tank turns in degrees per second.
+        
         [HideInInspector] public NavMeshAgent navMeshAgent;
         // public AudioSource m_MovementAudio;         // Reference to the audio source used to play engine sounds. NB: different to the shooting audio source.
         // public AudioClip m_EngineIdling;            // Audio to play when the tank isn't moving.
@@ -21,6 +23,8 @@ namespace BotLight
         // private float m_TurnInputValue;             // The current value of the turn input.
         private float originalPitch;              // The pitch of the audio source at the start of the scene.
         private ParticleSystem[] particleSystems; // References to all the particles systems used by the Tanks
+        private Vector3[] directions;
+        private int directionIndex;
 
         private void Awake()
         {
@@ -28,6 +32,23 @@ namespace BotLight
             navMeshAgent = GetComponent<NavMeshAgent>();
             navMeshAgent.stoppingDistance = 100; // ????
             navMeshAgent.speed = 40;
+
+            directions = new Vector3[]{ Vector3.zero, Vector3.zero, Vector3.zero};
+            
+            
+        }
+
+        private Vector3 RandomNavSphere(Vector3 origin, float distance, int layermask)
+        {
+            Vector3 randomDirection = Random.insideUnitSphere * distance;
+
+            randomDirection += origin;
+
+            NavMeshHit navHit;
+
+            NavMesh.SamplePosition(randomDirection, out navHit, distance, layermask);
+
+            return navHit.position;
         }
 
 
@@ -55,11 +76,13 @@ namespace BotLight
             // We grab all the Particle systems child of that Tank to be able to Stop/Play them on Deactivate/Activate
             // It is needed because we move the Tank when spawning it, and if the Particle System is playing while we do that
             // it "think" it move from (0,0,0) to the spawn point, creating a huge trail of smoke
+            /*
             particleSystems = GetComponentsInChildren<ParticleSystem>();
             for (int i = 0; i < particleSystems.Length; ++i)
             {
                 particleSystems[i].Play();
             }
+            */
         }
 
 
@@ -135,13 +158,23 @@ namespace BotLight
         }
 
 
-        private void Move()
+        public void Move()
         {
-            // Create a vector in the direction the tank is facing with a magnitude based on the input, speed and the time between frames.
-           //  Vector3 movement = transform.forward * m_MovementInputValue * m_Speed * Time.deltaTime;
-
-            // Apply this movement to the rigidbody's position.
-            // m_Rigidbody.MovePosition(m_Rigidbody.position + movement);
+            //Debug.Log("move : "+this.transform.position);
+            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
+            {
+                Vector3 v = RandomNavSphere(this.transform.position, 10, NavMesh.AllAreas);
+                if (directions[directionIndex] == Vector3.zero)
+                {
+                    directions[directionIndex] = v;
+                    navMeshAgent.destination = directions[directionIndex];
+                    
+                }
+                else if(this.transform.position == directions[directionIndex])
+                    directionIndex++;
+                
+                Debug.Log("Move - " + v);
+            }
         }
 
 
