@@ -59,7 +59,7 @@ namespace BotLight
         {
             // Reduce current health by the amount of damage done.
             currentHealth -= amount;
-            Debug.Log("My health is now at " + currentHealth);
+            //Debug.Log("My health is now at " + currentHealth);
             // Change the UI elements appropriately.
             SetHealthUI();
 
@@ -99,8 +99,10 @@ namespace BotLight
 
             // Turn the tank off.
             //Debug.Log(GetComponentsInParent(typeof(BotMovement)));
-            gameObject.SetActive(false);
-            ((NavMeshAgent)GetComponentsInParent(typeof(NavMeshAgent))[0]).enabled = false;
+            gameObject.AddComponent<Food>();
+            gameObject.GetComponent<NavMeshAgent>().enabled = false;
+            //gameObject.SetActive(false);
+            //((NavMeshAgent)GetComponentsInParent(typeof(NavMeshAgent))[0]).enabled = false;
         }
     }
 }

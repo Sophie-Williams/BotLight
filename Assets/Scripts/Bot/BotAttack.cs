@@ -90,7 +90,7 @@ namespace BotLight
         public void Attack(float attackRate, StateController target) // attackSpeed ?
         {
 
-            Debug.Log("BotAttack/Attack");
+            //Debug.Log("BotAttack/Attack");
             // Find the BotHealth script associated with the rigidbody.
             if (target)
             {

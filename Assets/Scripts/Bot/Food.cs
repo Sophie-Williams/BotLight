@@ -8,10 +8,7 @@ namespace BotLight
     {
 
         public float startingFood = 100f;               // The amount of health each tank starts with.
-        public Slider slider;                             // The slider to represent how much health the tank currently has.
-        public Image fillImage;                           // The image component of the slider.
-        public Color fullFoodColor = Color.yellow;       // The color the health bar will be when on full health.
-        public Color zeroFoodColor = Color.gray;         // The color the health bar will be when on no health.
+
         // public GameObject explosionPrefab;                // A prefab that will be instantiated in Awake, then used whenever the tank dies.
 
 
@@ -28,7 +25,7 @@ namespace BotLight
 
         private void Awake()
         {
-            slider.value = startingFood; // Once killed, the value should be 0 so we have to reset it, except in the case of StaticEatable
+
             // Instantiate the explosion prefab and get a reference to the particle system on it.
             // m_ExplosionParticles = Instantiate(m_ExplosionPrefab).GetComponent<ParticleSystem>();
             // TODO : Death animation
@@ -57,6 +54,7 @@ namespace BotLight
 
         public void GetEaten(float amount)
         {
+            Debug.Log("GetEaten : ");
             // Reduce current food by the amount of damage done.
             currentFood -= amount;
             // Change the UI elements appropriately.
@@ -72,11 +70,7 @@ namespace BotLight
 
         private void SetFoodUI()
         {
-            // Set the slider's value appropriately.
-            slider.value = currentFood;
-
-            // Interpolate the color of the bar between the choosen colours based on the current percentage of the starting health.
-            fillImage.color = Color.Lerp(zeroFoodColor, fullFoodColor, currentFood / startingFood);
+            // Animation
         }
 
 
@@ -98,7 +92,8 @@ namespace BotLight
 
             // Turn the tank off.
             //Debug.Log(GetComponentsInParent(typeof(BotMovement)));
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

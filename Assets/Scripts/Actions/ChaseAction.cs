@@ -14,6 +14,7 @@ namespace BotLight
 
         private void Chase(StateController controller)
         {
+            //Debug.Log("ChaseAction "+controller.botMovement.botNumber);
             controller.botMovement.navMeshAgent.destination = controller.chaseTarget.position;
             controller.botMovement.navMeshAgent.isStopped = false;
         }

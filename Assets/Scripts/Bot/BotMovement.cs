@@ -16,39 +16,36 @@ namespace BotLight
         // public AudioClip m_EngineDriving;           // Audio to play when the tank is moving.
         // public float m_PitchRange = 0.2f;           // The amount by which the pitch of the engine noises can vary.
 
-        private string movementAxisName;          // The name of the input axis for moving forward and back.
-        private string turnAxisName;              // The name of the input axis for turning.
+        //private string movementAxisName;          // The name of the input axis for moving forward and back.
+        //private string turnAxisName;              // The name of the input axis for turning.
         private new Rigidbody rigidbody;              // Reference used to move the tank.
         // private float m_MovementInputValue;         // The current value of the movement input.
         // private float m_TurnInputValue;             // The current value of the turn input.
-        private float originalPitch;              // The pitch of the audio source at the start of the scene.
-        private ParticleSystem[] particleSystems; // References to all the particles systems used by the Tanks
-        private Vector3[] directions;
-        private int directionIndex;
+        //private float originalPitch;              // The pitch of the audio source at the start of the scene.
+        //private ParticleSystem[] particleSystems; // References to all the particles systems used by the Tanks
+        private Vector3 direction;
 
         private void Awake()
         {
             rigidbody = GetComponent<Rigidbody>();
             navMeshAgent = GetComponent<NavMeshAgent>();
-            navMeshAgent.stoppingDistance = 100; // ????
+            //navMeshAgent.stoppingDistance = 100; // ????
             navMeshAgent.speed = 40;
 
-            directions = new Vector3[]{ Vector3.zero, Vector3.zero, Vector3.zero};
-            
+        }
+
+        void Start()
+        {
+
             
         }
 
-        private Vector3 RandomNavSphere(Vector3 origin, float distance, int layermask)
+        private Vector3 RandomNavSphere(Vector3 origin)
         {
-            Vector3 randomDirection = Random.insideUnitSphere * distance;
-
+            Vector3 randomDirection = Random.insideUnitSphere * Random.Range(5,30);
+            randomDirection.y = 0;
             randomDirection += origin;
-
-            NavMeshHit navHit;
-
-            NavMesh.SamplePosition(randomDirection, out navHit, distance, layermask);
-
-            return navHit.position;
+            return randomDirection;
         }
 
 
@@ -101,15 +98,15 @@ namespace BotLight
         }
 
 
-        private void Start()
-        {
+        //private void Start()
+        //{
             // The axes names are based on player number.
             // m_MovementAxisName = "Vertical" + m_PlayerNumber;
             // m_TurnAxisName = "Horizontal" + m_PlayerNumber;
 
             // Store the original pitch of the audio source.
             // m_OriginalPitch = m_MovementAudio.pitch;
-        }
+        //}
 
 
         private void Update()
@@ -161,19 +158,14 @@ namespace BotLight
         public void Move()
         {
             //Debug.Log("move : "+this.transform.position);
-            if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
+            if (navMeshAgent.enabled)
             {
-                Vector3 v = RandomNavSphere(this.transform.position, 10, NavMesh.AllAreas);
-                if (directions[directionIndex] == Vector3.zero)
+                if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
                 {
-                    directions[directionIndex] = v;
-                    navMeshAgent.destination = directions[directionIndex];
-                    
+
+                    direction = RandomNavSphere(this.transform.position);
+                    navMeshAgent.destination = direction;
                 }
-                else if(this.transform.position == directions[directionIndex])
-                    directionIndex++;
-                
-                Debug.Log("Move - " + v);
             }
         }
 

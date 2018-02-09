@@ -8,7 +8,6 @@ namespace BotLight
     [CreateAssetMenu(menuName = "BotLight/Actions/Eat")]
     public class EatAction : Action
     {
-        private IEnumerator coroutine;
 
         public override void Act(StateController controller)
         {
@@ -20,7 +19,7 @@ namespace BotLight
         {
             if (controller.food)
             {
-                controller.botMovement.navMeshAgent.destination = controller.food.position;
+                controller.botMovement.navMeshAgent.destination = controller.food.transform.position;
                 // Animation
                 controller.botMovement.navMeshAgent.isStopped = false; // ~= Resume() (deprecated)
 

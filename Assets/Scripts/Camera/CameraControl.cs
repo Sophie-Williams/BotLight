@@ -11,7 +11,7 @@ namespace BotLight
         [HideInInspector] public List<Transform> targets; // All the targets the camera needs to encompass.
 
 
-        private Camera camera;                        // Used for referencing the camera.
+        private new Camera camera;                        // Used for referencing the camera.
         private float zoomSpeed;                      // Reference speed for the smooth damping of the orthographic size.
         private Vector3 moveVelocity;                 // Reference velocity for the smooth damping of the position.
         private Vector3 desiredPosition;              // The position the camera is moving towards.
@@ -20,6 +20,7 @@ namespace BotLight
         private void Awake()
         {
             camera = GetComponentInChildren<Camera>();
+            SetStartPositionAndSize();
         }
 
 
@@ -113,7 +114,6 @@ namespace BotLight
 
             // Make sure the camera's size isn't below the minimum.
             size = Mathf.Max(size, minSize);
-
             return size;
         }
 
@@ -125,7 +125,7 @@ namespace BotLight
 
             // Set the camera's position to the desired position without damping.
             transform.position = desiredPosition;
-
+            //Debug.Log("Camera - desiredPosition" + desiredPosition);
             // Find and set the required size of the camera.
             camera.orthographicSize = FindRequiredSize();
         }

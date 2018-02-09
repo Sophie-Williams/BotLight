@@ -20,7 +20,7 @@ namespace BotLight
             // You can't attack plant for example,
             if (Physics.SphereCast(controller.eyes.position, controller.sphereParameters.lookSphereCastRadius, controller.eyes.forward, out hit, controller.sphereParameters.attackRange, LayerMask.GetMask("Eatable")) && hit.rigidbody.tag != "StaticEatable")
             {
-                Debug.Log("AttackAction - attacking");
+                //Debug.Log("AttackAction "+controller.botAttack.botNumber);
                 //if (controller.CheckIfCountDownElapsed(controller.sphereParameters.attackRate))
                 //{
                     //controller.tankShooting.Fire(controller.sphereParameters.attackForce, controller.sphereParameters.attackRate);

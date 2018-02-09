@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BotLight
 {
-    [CreateAssetMenu(menuName = "BotLight/Decisions/LookNonStaticDecision")]
+    [CreateAssetMenu(menuName = "BotLight/Decisions/LookNonStatic")]
     public class LookNonStaticDecision : Decision
     {
 
