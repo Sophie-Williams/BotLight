@@ -9,7 +9,7 @@ Ecosystem game
 Code architecture inspired by this tutorial :
 https://unity3d.com/learn/tutorials/s/tanks-tutorial
 
-The pattern used is delegate and final state machine
+The pattern used is delegate and finite state machine
 
 ### Carnivorous state diagram
     
