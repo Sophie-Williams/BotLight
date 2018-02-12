@@ -24,9 +24,3 @@ The pattern used is delegate and finite state machine
     
    ![Alt text](Diagrams/HerbivorousPatrolStateDiagram.png?raw=true "Herbivorous state diagram")
 
-# TODO list
- - Scripts/Bot/BotMovement.cs (will handle bot movement, animations ...)
- - Bots reproduction
- - Test eat/attack
- - Random movement / move around eatables , random/new behaviour, add actions/states
- ...
