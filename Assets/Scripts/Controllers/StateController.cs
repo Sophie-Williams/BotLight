@@ -28,10 +28,9 @@ namespace BotLight
 
         void Awake()
         {
-            botAttack = GetComponent<BotAttack>(); // TODO : Pass sphereParameters to components
+            botAttack = GetComponent<BotAttack>();
             botHealth = GetComponent<BotHealth>();
             botMovement = GetComponent<BotMovement>();
-            
 
             // If "Failed to create agent because it is not close enough to the NavMesh" appears
             // that's because the object linked with nma is too far from the floor for example
@@ -70,7 +69,6 @@ namespace BotLight
 
         public bool CheckIfCountDownElapsed(float duration)
         {
-            Debug.Log("Countdown : " + stateTimeElapsed);
             stateTimeElapsed += Time.deltaTime;
             return (stateTimeElapsed >= duration);
         }

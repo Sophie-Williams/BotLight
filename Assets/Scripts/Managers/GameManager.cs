@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 namespace BotLight
 {
@@ -13,20 +13,26 @@ namespace BotLight
         public GameObject[] foodPrefabs;
         public GameObject groundPrefab;
         public GameObject playerPrefab;
+        public Text GUI;
         [HideInInspector]
         public List<GameObject> foodInstance;
         public CameraControl cameraControl;       // Reference to the CameraControl script for control during different phases.
         [HideInInspector]
-        public List<SphereManager> spheres;     // A collection of managers for enabling and disabling different aspects of the spheres.
-        private int cameraIndex = 0;
-        private List<Transform> cameraTarget;
+        public List<BotManager> bots;     // A collection of managers for enabling and disabling different aspects of the bots.
+
+
+        private void Awake()
+        {
+            cameraControl.player = Instantiate(playerPrefab, new Vector3(0, 10, 0), new Quaternion(0, 0, 0, 0));
+
+        }
 
         // Use this for initialization
         void Start()
         {
+            
             SpawnAllAnimals();
-            Instantiate(playerPrefab, new Vector3(0, 10, 0), new Quaternion(0, 0, 0, 0));
-            SetCameraTargets();
+
             InvokeRepeating("SpawnFood", 5, 10);
             InvokeRepeating("DeleteFood", 62, 60);
         }
@@ -35,11 +41,10 @@ namespace BotLight
         {
             for (int i = 0; i < startingAnimals; i++)
             {
-                SphereManager sphere = new SphereManager();
-                sphere.instance = Instantiate(animalPrefabs[Random.Range(0, animalPrefabs.Length)], new Vector3(i * 80, 5, i * 80), new Quaternion(0, 0, 0, 0)) as GameObject;
-                sphere.sphereNumber = i + 1;
-                sphere.SetupAI();
-                spheres.Add(sphere);
+                BotManager bot = new BotManager();
+                bot.instance = Instantiate(animalPrefabs[Random.Range(0, animalPrefabs.Length)], new Vector3(i * 80, 5, i * 80), new Quaternion(0, 0, 0, 0)) as GameObject;
+                bot.SetupAI();
+                bots.Add(bot);
 
             }
         }
@@ -83,29 +88,25 @@ namespace BotLight
 
         }
 
-        private void SetCameraTargets()
+
+
+        public IEnumerator FadeTextToFullAlpha(float t, Text i)
         {
-            // Create a collection of transforms the same size as the number of tanks.
-            cameraTarget = new List<Transform>();
-
-            // For each of these transforms...
-            for (int i = 0; i < spheres.Count; i++) // spheres.Count
+            i.color = new Color(i.color.r, i.color.g, i.color.b, 0);
+            while (i.color.a < 1.0f)
             {
-                // ... set it to the appropriate tank transform.
-                cameraTarget.Add(spheres[i].instance.transform);
+                i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a + (Time.deltaTime / t));
+                yield return null;
             }
-
-            // These are the targets the camera should follow.
-            // cameraControl.targets = targets;
         }
 
-        // Update is called once per frame
-        void Update()
+        public IEnumerator FadeTextToZeroAlpha(float t, Text i)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-            { 
-                cameraControl.targets.Add(cameraTarget[++cameraIndex]);
-                cameraControl.targets.Remove(cameraTarget[cameraIndex-1]);
+            i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+            while (i.color.a > 0.0f)
+            {
+                i.color = new Color(i.color.r, i.color.g, i.color.b, i.color.a - (Time.deltaTime / t));
+                yield return null;
             }
         }
     }

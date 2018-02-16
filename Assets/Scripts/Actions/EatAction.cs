@@ -24,10 +24,7 @@ namespace BotLight
                 controller.botMovement.navMeshAgent.isStopped = false; // ~= Resume() (deprecated)
 
                 Debug.DrawRay(controller.eyes.position, controller.eyes.forward.normalized * controller.sphereParameters.lookRange, Color.green);
-                // Doesn't draw any line ray ?
 
-
-                //Debug.Log("Entered LookDecision - herbivorous");
                 Collider[] hitColliders = Physics.OverlapSphere(controller.eyes.position, controller.sphereParameters.lookSphereCastRadius, LayerMask.GetMask("Eatable"));
 
                 // search through all hit colliders for an eatable

@@ -16,16 +16,7 @@ namespace BotLight
 
         private void Patrol(StateController controller)
         {
-            /*
-            controller.botMovement.navMeshAgent.destination = controller.wayPointList[controller.nextWayPoint].position;
-            controller.botMovement.navMeshAgent.isStopped = false;
-
-            if (controller.botMovement.navMeshAgent.remainingDistance <= controller.botMovement.navMeshAgent.stoppingDistance && !controller.botMovement.navMeshAgent.pathPending)
-            {
-                controller.nextWayPoint = (controller.nextWayPoint + 1) % controller.wayPointList.Count;
-            }
-            */
-            controller.botMovement.Move();
+            controller.botMovement.MoveRandom();
         }
     }
 }

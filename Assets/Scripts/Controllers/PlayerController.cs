@@ -3,23 +3,65 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-
-    public float speed;
+    
 
     private Rigidbody rb;
 
-    void Start()
+    public float inputDelay = 0.1f;
+    public float forwardVel = 120;
+    public float rotateVel = 100;
+
+    Quaternion targetRotation;
+    float forwardInput, turnInput;
+
+    public Quaternion TargetRotation
     {
-        rb = GetComponent<Rigidbody>();
+        get { return targetRotation;  }
     }
 
-    void FixedUpdate()
+    void Start()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        targetRotation = transform.rotation;
+        if (GetComponent<Rigidbody>())
+            rb = GetComponent<Rigidbody>();
+        else
+            Debug.LogError("The character needs a rigidbody.");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        forwardInput = turnInput = 0;
+    }
 
-        rb.AddForce(movement * speed);
+    void GetInput()
+    {
+        forwardInput = Input.GetAxis("Vertical");
+        turnInput = Input.GetAxis("Horizontal");
+    }
+
+    void Update()
+    {
+        GetInput();
+        Turn();
+    }
+
+    private void FixedUpdate()
+    {
+        Run();
+    }
+
+    void Run()
+    {
+        if (Mathf.Abs(forwardInput) > inputDelay)
+        {
+            rb.velocity = transform.forward * forwardInput * forwardVel;
+        }
+        else
+            rb.velocity = Vector3.zero;
+    }
+    void Turn()
+    {
+        if (Mathf.Abs(turnInput) > inputDelay)
+        {
+            targetRotation *= Quaternion.AngleAxis(rotateVel * turnInput * Time.deltaTime, Vector3.up);
+        }
+        transform.rotation = targetRotation;
     }
 }

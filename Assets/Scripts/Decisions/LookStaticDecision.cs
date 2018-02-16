@@ -10,20 +10,15 @@ namespace BotLight
 
         public override bool Decide(StateController controller)
         {
-            //Debug.Log("LookDecision");
-            bool foodVisible = Look(controller); // food visible ?
+            bool foodVisible = Look(controller);
             return foodVisible;
         }
 
         private bool Look(StateController controller)
         {
-            // TODO : Nothing detected, maybe try manual detecting ?
 
             Debug.DrawRay(controller.eyes.position, controller.eyes.forward.normalized * controller.sphereParameters.lookRange, Color.green);
-            // Doesn't draw any line ray ?
-
  
-            //Debug.Log("Entered LookDecision - herbivorous");
             Collider[] hitColliders = Physics.OverlapSphere(controller.eyes.position, controller.sphereParameters.lookSphereCastRadius, LayerMask.GetMask("Eatable"));
 
             // search through all hit colliders for an eatable
