@@ -16,7 +16,7 @@ namespace BotLight
 
         private void Patrol(StateController controller)
         {
-            controller.botMovement.MoveRandom();
+            controller.botMovement.MoveRandom(20);
         }
     }
 }

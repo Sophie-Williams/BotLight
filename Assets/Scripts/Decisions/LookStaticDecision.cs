@@ -27,6 +27,7 @@ namespace BotLight
                 if (hitColliders[i].tag == "StaticEatable") // like plant
                 {
                     //Debug.Log("LookForNonAnimalDecision - saw eatable");
+                    if (!hitColliders[i]) continue; // exception??
                     controller.food.transform.position = hitColliders[i].transform.position; // we saw food at hit.transform position => assign to food position
 
                     return true; // we found an eatable. exit early

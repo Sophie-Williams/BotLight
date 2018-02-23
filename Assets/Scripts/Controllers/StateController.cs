@@ -26,11 +26,12 @@ namespace BotLight
         private bool aiActive;
 
 
-        void Awake()
+        void Start()
         {
             botAttack = GetComponent<BotAttack>();
             botHealth = GetComponent<BotHealth>();
             botMovement = GetComponent<BotMovement>();
+            botMovement.navMeshAgent.speed = sphereParameters.moveSpeed;
 
             // If "Failed to create agent because it is not close enough to the NavMesh" appears
             // that's because the object linked with nma is too far from the floor for example

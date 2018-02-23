@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 114903688989783994}
   - component: {fileID: 54141085249069410}
   - component: {fileID: 114058200564718528}
+  - component: {fileID: 114243692875851196}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -222,6 +223,18 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114243692875851196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1697444515245688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366b3503987bd724e8a797889b2acf88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!114 &114356703012202608
 MonoBehaviour:
   m_ObjectHideFlags: 1
