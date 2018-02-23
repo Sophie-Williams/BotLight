@@ -60,7 +60,7 @@ namespace BotLight
             int whichPrefab = Random.Range(0, foodPrefabs.Length);
 
             Vector3 spawnPosition = new Vector3(Random.Range(0, groundPrefab.transform.localScale.x),
-                Random.Range(1, groundPrefab.transform.localScale.y),
+                100,
                 Random.Range(0, groundPrefab.transform.localScale.z));
 
 

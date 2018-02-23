@@ -258,7 +258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366b3503987bd724e8a797889b2acf88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  botNumber: 1
   damage: 10
 --- !u!114 &114273530870807896
 MonoBehaviour:
@@ -378,7 +377,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e94637308bf794ea7887438490671a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  botNumber: 1
   speed: 12
   turnSpeed: 180
   navMeshAgent: {fileID: 0}
@@ -441,7 +439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cc6b71ea27814c4090af948c9c73f00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: {fileID: 11400000, guid: cb44133facb03e942aaf8245896d9398, type: 2}
+  currentState: {fileID: 11400000, guid: 9469806c39642d041a31937e5ed690a5, type: 2}
   sphereParameters: {fileID: 11400000, guid: e0656f9303a802249aebf6775632fa99, type: 2}
   eyes: {fileID: 4390259532793028}
   remainState: {fileID: 11400000, guid: dc918682a46bd004a9037795911c499e, type: 2}

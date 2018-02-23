@@ -353,8 +353,6 @@ MonoBehaviour:
   botAttack: {fileID: 0}
   botHealth: {fileID: 0}
   botMovement: {fileID: 0}
-  wayPointList: []
-  nextWayPoint: 0
   food: {fileID: 0}
   chaseTarget: {fileID: 0}
   stateTimeElapsed: 0
@@ -369,7 +367,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366b3503987bd724e8a797889b2acf88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  botNumber: 1
   damage: 10
 --- !u!114 &114748885254549268
 MonoBehaviour:
@@ -382,7 +379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e94637308bf794ea7887438490671a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  botNumber: 1
   speed: 12
   turnSpeed: 180
   navMeshAgent: {fileID: 0}

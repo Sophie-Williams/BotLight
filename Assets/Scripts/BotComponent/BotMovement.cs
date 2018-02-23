@@ -57,6 +57,12 @@ namespace BotLight
         }
 
 
+        public void Move(Vector3 destination)
+        {
+            navMeshAgent.destination = destination;
+        }
+
+
         public void MoveRandom()
         {
             if (navMeshAgent.enabled)
