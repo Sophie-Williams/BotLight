@@ -10,15 +10,15 @@ namespace BotLight
         private float nextAttackTime; // kind of attack speed thing, useful
 
         
-        public void Attack(float attackRate, StateController target) // attackSpeed ?
+        public void Attack(float attackRate, RaycastHit hit) // attackSpeed ?
         {
-            
+            BotHealth target = hit.rigidbody.GetComponent<BotHealth>();
+            Debug.Log("BotAttack : " + Time.time + " | " + nextAttackTime + " | " + target);
             // Find the BotHealth script associated with the rigidbody.
             if (target)
             {
-
-                BotHealth targetHealth = target.GetComponent<BotHealth>();
-                if (Time.time > nextAttackTime && targetHealth.isActiveAndEnabled)
+                
+                if (Time.time > nextAttackTime && target.isActiveAndEnabled)
                 {
                     nextAttackTime = Time.time + attackRate;
                     // Set the fired flag so only Fire is only called once.
@@ -26,10 +26,10 @@ namespace BotLight
 
 
 
-                    if (targetHealth.getHealth() <= 0)
+                    if (target.getHealth() <= 0)
                         return;
 
-                    targetHealth.TakeDamage(damage);
+                    target.TakeDamage(damage);
 
                 }
             }

@@ -23,7 +23,7 @@ namespace BotLight
 
         private void Awake()
         {
-            cameraControl.player = Instantiate(playerPrefab, new Vector3(0, 10, 0), new Quaternion(0, 0, 0, 0));
+            cameraControl.player = Instantiate(playerPrefab, new Vector3(100, 1, 100), new Quaternion(0, 0, 0, 0));
 
         }
 

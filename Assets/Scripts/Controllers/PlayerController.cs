@@ -62,13 +62,12 @@ namespace BotLight
                 RaycastHit hit;
 
                 //Debug.Log("Click");
-
-                if (Physics.SphereCast(transform.position, 40, transform.forward, out hit, 10, LayerMask.GetMask("Eatable")) && hit.rigidbody.tag != "StaticEatable")
+                Vector3 origin = new Vector3(transform.position.x, transform.position.y, transform.position.z - 10);
+                if (Physics.SphereCast(origin, 10, transform.forward, out hit, 10, LayerMask.GetMask("Eatable")) && hit.rigidbody.tag != "StaticEatable")
                 {
                     Debug.Log("Attack");
-                    StateController target = hit.rigidbody.GetComponent<StateController>();
                     BotAttack BotAttack = GetComponent<BotAttack>();
-                    BotAttack.Attack(1, target);
+                    BotAttack.Attack(1, hit);
                 }
             }
         }

@@ -371,14 +371,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b052b17b242b74479657cd36424a171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingAnimals: 15
+  startingAnimals: 2
   animalPrefabs:
-  - {fileID: 1462646895814716, guid: e33caefff23693145833afd24c29dfd2, type: 2}
-  - {fileID: 1965851562501010, guid: e82139b3bae6212439ea1e85ad29678b, type: 2}
-  - {fileID: 1055064919166404, guid: de6abd774f85e18408346a3233418242, type: 2}
   - {fileID: 1287295899898638, guid: 9ec060093457ad84ca2733cb15c2c41e, type: 2}
-  - {fileID: 1522729216997060, guid: 32026357c04e0e944835774b42e3c1b7, type: 2}
-  - {fileID: 1206511787925574, guid: 3b1e3e9155d404942bc65d9aa80120ba, type: 2}
+  - {fileID: 1462646895814716, guid: e33caefff23693145833afd24c29dfd2, type: 2}
   foodPrefabs:
   - {fileID: 1360511251852848, guid: ce8a77c3cfd50674fb4ce69b8fa85271, type: 2}
   groundPrefab: {fileID: 1374187639}

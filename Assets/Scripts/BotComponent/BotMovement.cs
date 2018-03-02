@@ -64,7 +64,7 @@ namespace BotLight
 
         public void MoveRandom(int distance)
         {
-            Debug.Log("MySpeed : " + speed);
+            //Debug.Log("MySpeed : " + speed);
             if (navMeshAgent.enabled)
             {
                 if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)

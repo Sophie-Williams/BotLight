@@ -380,7 +380,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 12
-  turnSpeed: 180
   navMeshAgent: {fileID: 0}
 --- !u!114 &114879343490989100
 MonoBehaviour:
@@ -425,7 +424,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1462646895814716}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c4d5ff36569309843ba1f8d1667fe7b6, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
