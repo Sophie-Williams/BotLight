@@ -23,7 +23,7 @@ namespace BotLight
 
         private void Awake()
         {
-            cameraControl.player = Instantiate(playerPrefab, new Vector3(100, 1, 100), new Quaternion(0, 0, 0, 0));
+            cameraControl.player = Instantiate(playerPrefab, new Vector3(500, 0, 500), new Quaternion(0, 0, 0, 0));
 
         }
 
@@ -42,7 +42,7 @@ namespace BotLight
             for (int i = 0; i < startingAnimals; i++)
             {
                 BotManager bot = new BotManager();
-                bot.instance = Instantiate(animalPrefabs[Random.Range(0, animalPrefabs.Length)], new Vector3(i * 80, 5, i * 80), new Quaternion(0, 0, 0, 0)) as GameObject;
+                bot.instance = Instantiate(animalPrefabs[Random.Range(0, animalPrefabs.Length)], new Vector3(i * 80, 0, i * 80), new Quaternion(0, 0, 0, 0)) as GameObject;
                 bot.SetupAI();
                 bots.Add(bot);
 

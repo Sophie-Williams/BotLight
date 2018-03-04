@@ -15,7 +15,7 @@ namespace BotLight
 
         private AudioSource getAttackedAudio;               // The audio source to play when the bot get attacked.
         private float currentHealth;                      // How much health the bot currently has.
-        private bool dead;                                // Has the bot been reduced beyond zero health yet?
+        [HideInInspector]public bool dead;                                // Has the bot been reduced beyond zero health yet?
 
 
         public float getHealth() // can get, not set
@@ -75,7 +75,7 @@ namespace BotLight
 
             // Turn the bot off.
             gameObject.AddComponent<Food>();
-            gameObject.GetComponent<NavMeshAgent>().enabled = false;
+            gameObject.GetComponent<NavMeshAgent>().enabled = false; // TODO : player, no navmeshagent
         }
     }
 }

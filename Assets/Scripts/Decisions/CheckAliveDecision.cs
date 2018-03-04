@@ -16,7 +16,7 @@ namespace BotLight
     {
         public override bool Decide(StateController controller)
         {
-            bool targetIsActive = controller.chaseTarget;
+            bool targetIsActive = !controller.chaseTarget.GetComponent<BotHealth>().dead;
             return targetIsActive;
         }
 

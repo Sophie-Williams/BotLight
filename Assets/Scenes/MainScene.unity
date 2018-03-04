@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b052b17b242b74479657cd36424a171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingAnimals: 2
+  startingAnimals: 10
   animalPrefabs:
   - {fileID: 1287295899898638, guid: 9ec060093457ad84ca2733cb15c2c41e, type: 2}
   - {fileID: 1462646895814716, guid: e33caefff23693145833afd24c29dfd2, type: 2}
